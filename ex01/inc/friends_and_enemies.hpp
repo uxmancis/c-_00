@@ -37,5 +37,6 @@
 
 Contact get_contact_info(void);
 int isValidIntegerInRange(std::string input);
+void show_all_contacts_mandatory_info(PhoneBook phonebook);
 
 #endif 

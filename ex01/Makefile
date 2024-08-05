@@ -12,7 +12,7 @@
 
 # Compiler and compiler flags
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 # Source files and object files
 SRC = src/friends_and_enemies.cpp src/Contact.cpp src/PhoneBook.cpp 
