@@ -10,13 +10,15 @@ std::string get_user_input(PhoneBook phonebook)
 	//std::cout << CLEAR_SCREEN;
 	std::cout << "\n\n------------------------------------------------------" << std::endl;
 	std::cout << "Please " AQUAMARINE "type" RESET_COLOR " the action you'd like to execute:" << std::endl;
-	std::cout << "Current number of contacts in phonebook: " AQUAMARINE << phonebook.counter_contacts << RESET_COLOR << " / 8" << std::endl;
+	std::cout << "Current number of contacts in phonebook: " AQUAMARINE << phonebook.counter_contacts_til_eight << RESET_COLOR << " / 8" << std::endl;
 	std::cout << "\n";
 	std::cout << " · ADD: Add new contact in phonebook" << std::endl;
 	std::cout << " · SEARCH: Display existing contacts" << std::endl;
 	std::cout << " · EXIT: Exit phonebook (existing contacts will be lost forever)" << std::endl;
 	std::cout << AQUAMARINE "\n > " RESET_COLOR;
 	std::getline(std::cin, input);
+	if(std::cin.eof())
+		exit(-1);
 	return (input);
 }
 
@@ -53,10 +55,22 @@ Contact get_contact_info(void)
 		std::cout << RED "    *" RESET_COLOR "Nickname: ";
 		std::getline(std::cin, contact.nickname);
 	}
-	std::cout << "     Age (Optional): ";
-	std::getline(std::cin, contact.age);
-	std::cout << "     Hobby (Optional): ";
-	std::getline(std::cin, contact.hobby);
+	std::cout << RED "    *" RESET_COLOR "Phone number: ";
+	std::getline(std::cin, contact.phone_nb);
+	while (contact.phone_nb.length() <= 0) //hasta que nos lo informen bien
+	{
+		std::cout << RED << "Mandatory field. Please fill to add contact." << RESET_COLOR << std::endl;
+		std::cout << RED "    *" RESET_COLOR "Phone number: ";
+		std::getline(std::cin, contact.phone_nb);
+	}
+	std::cout << RED "    *" RESET_COLOR "Darkest secret: ";
+	std::getline(std::cin, contact.d_secret);
+	while (contact.nickname.length() <= 0) //hasta que nos lo informen bien
+	{
+		std::cout << RED << "Mandatory field. Please fill to add contact." << RESET_COLOR << std::endl;
+		std::cout << RED "    *" RESET_COLOR "Darkest secret: ";
+		std::getline(std::cin, contact.d_secret);
+	}
 	std::cout << GREEN << "**Contact successfully added to phonebook**" << RESET_COLOR << std::endl;
 	return (contact);
 }
@@ -68,8 +82,11 @@ int main(void)
 	
 	while (1)
 	{
+		
 		//std::cout << CLEAR_SCREEN;
 		input = get_user_input(phonebook);
+		if (input == "-1")
+			break;
 		if (input == "EXIT")
 			return (0);
 		else if (input == "ADD")

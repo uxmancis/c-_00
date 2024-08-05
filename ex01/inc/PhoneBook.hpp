@@ -27,7 +27,8 @@ class PhoneBook
 	//Atributos o propiedades
 	Contact		contacts[MAX_CONTACTS];
 	int			indext_contact;
-	int			counter_contacts;
+	int			counter_contacts_til_eight;
+	int			total_counter_contacts;
 	
 	//Métodos o comportamientos
 	public:

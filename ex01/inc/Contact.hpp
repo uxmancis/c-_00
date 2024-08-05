@@ -27,8 +27,8 @@ class Contact
 	std::string first_name;
 	std::string last_name;
 	std::string nickname;
-	std::string age;
-	std::string hobby;
+	std::string phone_nb;
+	std::string d_secret;
 	
 	//Métodos o comportamientos
 };
