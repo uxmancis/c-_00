@@ -1,13 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   friends_and_enemies.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uxmancis <uxmancis@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/16 13:03:21 by uxmancis          #+#    #+#             */
+/*   Updated: 2024/08/16 13:03:21 by uxmancis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/friends_and_enemies.hpp"
 #include <string>
 
 std::string get_user_input(PhoneBook phonebook)
 {
 	std::string	input;
-
-	// std::cout << std::endl;
-	// std::cout << std::endl;
-	//std::cout << CLEAR_SCREEN;
 	std::cout << "\n\n------------------------------------------------------" << std::endl;
 	std::cout << "Please " AQUAMARINE "type" RESET_COLOR " the action you'd like to execute:" << std::endl;
 	std::cout << "Current number of contacts in phonebook: " AQUAMARINE << phonebook.counter_contacts_til_eight << RESET_COLOR << " / 8" << std::endl;
@@ -35,6 +43,8 @@ Contact get_contact_info(void)
 	std::getline(std::cin, contact.first_name);
 	while (contact.first_name.length() <= 0) //hasta que nos lo informen bien
 	{
+		if(std::cin.eof())
+			exit(-1);
 		std::cout << RED << "Mandatory field. Please fill to add contact." << RESET_COLOR << std::endl;
 		std::cout << RED "    *" RESET_COLOR "First name: ";
 		std::getline(std::cin, contact.first_name);
@@ -43,6 +53,8 @@ Contact get_contact_info(void)
 	std::getline(std::cin, contact.last_name);
 	while (contact.last_name.length() <= 0) //hasta que nos lo informen bien
 	{
+		if(std::cin.eof())
+			exit(-1);
 		std::cout << RED << "Mandatory field. Please fill to add contact." << RESET_COLOR << std::endl;
 		std::cout << RED "    *" RESET_COLOR "Last name: ";
 		std::getline(std::cin, contact.last_name);
@@ -51,6 +63,8 @@ Contact get_contact_info(void)
 	std::getline(std::cin, contact.nickname);
 	while (contact.nickname.length() <= 0) //hasta que nos lo informen bien
 	{
+		if(std::cin.eof())
+			exit(-1);
 		std::cout << RED << "Mandatory field. Please fill to add contact." << RESET_COLOR << std::endl;
 		std::cout << RED "    *" RESET_COLOR "Nickname: ";
 		std::getline(std::cin, contact.nickname);
@@ -59,6 +73,8 @@ Contact get_contact_info(void)
 	std::getline(std::cin, contact.phone_nb);
 	while (contact.phone_nb.length() <= 0) //hasta que nos lo informen bien
 	{
+		if(std::cin.eof())
+			exit(-1);
 		std::cout << RED << "Mandatory field. Please fill to add contact." << RESET_COLOR << std::endl;
 		std::cout << RED "    *" RESET_COLOR "Phone number: ";
 		std::getline(std::cin, contact.phone_nb);
@@ -67,6 +83,8 @@ Contact get_contact_info(void)
 	std::getline(std::cin, contact.d_secret);
 	while (contact.nickname.length() <= 0) //hasta que nos lo informen bien
 	{
+		if(std::cin.eof())
+			exit(-1);
 		std::cout << RED << "Mandatory field. Please fill to add contact." << RESET_COLOR << std::endl;
 		std::cout << RED "    *" RESET_COLOR "Darkest secret: ";
 		std::getline(std::cin, contact.d_secret);
@@ -82,23 +100,15 @@ int main(void)
 	
 	while (1)
 	{
-		
-		//std::cout << CLEAR_SCREEN;
 		input = get_user_input(phonebook);
 		if (input == "-1")
 			break;
 		if (input == "EXIT")
 			return (0);
 		else if (input == "ADD")
-		{
-			printf("ADD\n");
 			phonebook.add_new_contact(&phonebook);
-		}
 		else if (input == "SEARCH")
-		{
-			printf("SEARCH\n");
 			phonebook.search_show_contacts(phonebook);
-		}
 		else
 			std::cout << RED "Not valid action. Please, try again" RESET_COLOR << std::endl;
 	}

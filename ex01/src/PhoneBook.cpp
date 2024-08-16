@@ -27,15 +27,11 @@ PhoneBook::~PhoneBook(void)
 
 void PhoneBook::add_new_contact(PhoneBook *phonebook)
 {
-	//std::cout << phonebook->sum_of_contacts;
     phonebook->indext_contact = phonebook->total_counter_contacts % 8; //makes sure index_contact stays [0-7]
-	// printf(AQUAMARINE "Before: index_contacts = %d, counter_contacts = %d\n" RESET_COLOR, phonebook->indext_contact, phonebook->counter_contacts);
     phonebook->contacts[indext_contact] = get_contact_info();
     if (phonebook->counter_contacts_til_eight < 8)
 		phonebook->counter_contacts_til_eight++;
 	phonebook->total_counter_contacts++;
-	//std::cout << phonebook->sum_of_contacts;
-	// printf(AQUAMARINE "After: index_contacts = %d, counter_contacts = %d\n" RESET_COLOR, phonebook->indext_contact, phonebook->counter_contacts);
 }
 
 int isValidIntegerInRange(std::string input)
@@ -140,7 +136,6 @@ void ft_put_phone_nb(PhoneBook phonebook, int index)
 	int i;
 	
 	len_phone_nb = phonebook.contacts[index].phone_nb.length();
-	// std::cout << "len_first_name = " << len_first_name << std::endl;
 	i = 0;
 	std::cout << "|";
 	if (len_phone_nb <= 10)
@@ -169,7 +164,6 @@ void ft_put_darkest_secret(PhoneBook phonebook, int index)
 	int i;
 	
 	len_darkest_secret = phonebook.contacts[index].d_secret.length();
-	// std::cout << "len_first_name = " << len_first_name << std::endl;
 	i = 0;
 	std::cout << "|";
 	if (len_darkest_secret <= 10)
@@ -221,7 +215,6 @@ void show_all_contacts_mandatory_info(PhoneBook phonebook)
 		i++;
 		tmp_counter_contacts_til_eight--;
 	}
-	//std::cout << AQUAMARINE "\n" << phonebook.counter_contacts << RESET_COLOR " contacts are in phonebook" << std::endl;
 }
 
 /*see_more_info_about
